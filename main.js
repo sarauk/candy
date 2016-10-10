@@ -955,12 +955,14 @@ startNewGame = function() {
 	
 	
 	var drawText = function (displayText, x, y, size, gradientColours) { //Returns a jQuery object for the DOM object created.
+		x = x * 1.3;
+		y = y * 1.3;
 		var vPad = size/4;
 		var tailDepth = size/4;
 		var outlineSize = size/(100/7.5);
 		var position = $(canvas).offset();
+		console.log(position);
 		var jCanvas = $("<canvas>");
-		
 		if(jCanvas[0].getContext) {
 			var gfx = jCanvas[0].getContext('2d');
 			gfx.font = size+'pt candy';
