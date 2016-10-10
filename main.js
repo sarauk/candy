@@ -6,6 +6,8 @@ startNewGame, defined in this file, is called by load game.js when all the requi
 This means that you can say stuff like "mainWindow.watchScoreWith(function(foo) {console.log('new value: ' + foo)})" after the game has been initialized, over in htmlInterface.js.
 */
 
+iJelly = true;
+iMoves = 27;
 startNewGame = function() {
 	"use strict";
 	
@@ -114,7 +116,7 @@ startNewGame = function() {
 				gamefield[tileToReturn.tileX][tileToReturn.tileY] = null;
 				if(!quietly) {
 					if(jelly && jellyfield[tileToReturn.tileX][tileToReturn.tileY]) jellyfield[tileToReturn.tileX][tileToReturn.tileY].remove();
-					drawTileScore(Math.floor(40 * (matchesMadeThisMove/2+1)), tileToReturn.x+tileWidth/2, tileToReturn.y+tileHeight/2, 30, ["#F8DB63", "#CF8A09"]);
+					drawTileScore(Math.floor(27 * (matchesMadeThisMove/2+1)), tileToReturn.x+tileWidth/2, tileToReturn.y+tileHeight/2, 30, ["#F8DB63", "#CF8A09"]);
 				}
 				tileContainer.removeChild(tileToReturn);
 			};
@@ -673,7 +675,7 @@ startNewGame = function() {
 			});
 			
 			var lastY = gamefield[x].lastIndexOf(null)+1; //Tiles added to replace tiles matched.
-			scoreDelta += Math.floor(lastY * 40 * (matchesMadeThisMove/2+1));
+			scoreDelta += Math.floor(lastY * 27 * (matchesMadeThisMove/2+1));
 			
 			_.range(0, lastY).map(function(y) {
 				var tile = getNewTile(x, y, undefined, _.random(numTileTypes)); //Specify false, random number to allow matches to be made by sheer chance, I think.
@@ -931,7 +933,7 @@ startNewGame = function() {
 			return tile.isBonus;
 		});
 		if(!!_.head(bonusTiles)) {
-			drawBigOverlay('Sugar Rush', Width/2, Height/2, 100, ["#F8DB63", "#CF8A09"]);
+			drawBigOverlay('Sara Rush', Width/2, Height/2, 100, ["#F8DB63", "#CF8A09"]);
 			removeMatches(bonusTiles, true);
 		} else {
 			runGameOver();
@@ -944,8 +946,10 @@ startNewGame = function() {
 		createjs.Ticker.setPaused(true);
 		gameStatus.set('finished');
 		window.setTimeout(function(){
-			window.alert("Game Over.\nYour score is " + score.value() + " points!");
-		}, 100);
+			drawBigOverlay("Happy Birthday Sara!", Width/2, Height/2, 75, ["#F8DB63", "#CF8A09"]);
+			drawBigOverlay("Your score is " + score.value() + " points!", Width/2 + 75, Height/2 + 75, 50, ["#F8DB63", "#CF8A09"]);
+		}, 1000);
+
 	};
 	var runGameOver = _.once(runGameOvers);
 	
