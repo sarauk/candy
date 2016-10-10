@@ -1066,7 +1066,7 @@ startNewGame = function() {
 	}
 	createjs.Ticker.addListener(stage);
 	
-	var spriteSheetB = new createjs.Bitmap("images/CC_Grid_Sprite_Sheet_v2.bmp");
+	var spriteSheetB = new createjs.Bitmap("images/CC_Grid_Sprite_Sheet_v2.png");
 	
 	var tileSourceRects = { //sourceRect is not cloned when we clone the bitmap. We must define sourceRects instead of bitmaps.
 		normal: [
