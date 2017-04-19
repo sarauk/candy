@@ -43,20 +43,14 @@ var loadGame = function() {
 		
 		jsAr.map(function(js) {
 			console.log('getting ' + js);
-			$.ajax({
-				async: false,
-				type: "GET",
-				url: js,
-				dataType: 'text',
-
-				success: function(data){
-					jQuery.globalEval(data);
-					loadOtherScriptsCount += 1;
-					onAllLoaded();
-				},
-				error: function() {console.error('An error occured loading a game script.');}
-				
-			});
+			var script = document.createElement('script');
+			script.src = js;
+			script.onload = function(data) {
+				jQuery.globalEval(data);
+				loadOtherScriptsCount += 1;
+				onAllLoaded();
+			}
+			document.body.appendChild(script);
 		});
 	}
 	
