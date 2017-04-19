@@ -3,7 +3,7 @@
 Original source taken from https://github.com/DDR0/ddr0.github.com/tree/master/Candy%20Crunch
 
 
-##So you want your own version?
+## So you want your own version?
 
 Github has a "Fork" button on the top right. Click that to create a copy of this repository inside your own github account.
 
@@ -12,11 +12,11 @@ You can then download the code onto your own machine, using the green "Clone or 
 OR - you may want to use the [Github App](https://desktop.github.com/), especially if you're using Windows.
 
 
-###Running
+### Running
 
 Once you have the code on your local machine, running is simply a matter of opening index.html in a browser and voila - you should be up and running.
 
-###Changing.
+### Changing.
 
 Most of this code is completely obscure and you don't need to care about. The bits you probably want to care about are below:
 
@@ -29,7 +29,7 @@ Most of this code is completely obscure and you don't need to care about. The bi
 * `main.js` - This is where all the magic happens. It is quite literally magic, so I've earmarked the noteworthy places that can be changed with comments starting with `AG`
 
 
-###Putting it live
+### Putting it live
 Once you've made whatever changes you like, you can then push these back up to the `master` branch of your forked repository (if that doesn't sound like English, read up on Github).
 
 Github then lets you serve websites from your master branch. Click on *Settings*, scroll to the section called *Github Pages* and change the source to `master`. If all went well, it should have published at `https://<yourusername>.github.io/candy`
