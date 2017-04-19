@@ -7,6 +7,8 @@ This means that you can say stuff like "mainWindow.watchScoreWith(function(foo) 
 */
 
 iJelly = true;
+
+//AG: THis is the number of total moves, dutifully set to the age.
 iMoves = 27;
 startNewGame = function() {
 	"use strict";
@@ -116,7 +118,7 @@ startNewGame = function() {
 				gamefield[tileToReturn.tileX][tileToReturn.tileY] = null;
 				if(!quietly) {
 					if(jelly && jellyfield[tileToReturn.tileX][tileToReturn.tileY]) jellyfield[tileToReturn.tileX][tileToReturn.tileY].remove();
-					drawTileScore(Math.floor(27 * (matchesMadeThisMove/2+1)), tileToReturn.x+tileWidth/2, tileToReturn.y+tileHeight/2, 30, ["#F8DB63", "#CF8A09"]);
+					drawTileScore(Math.floor(iMoves * (matchesMadeThisMove/2+1)), tileToReturn.x+tileWidth/2, tileToReturn.y+tileHeight/2, 30, ["#F8DB63", "#CF8A09"]);
 				}
 				tileContainer.removeChild(tileToReturn);
 			};
@@ -496,6 +498,7 @@ startNewGame = function() {
 		return function removeMatchesInternal(matches, flat) { //If not flat: Matches is a list of lists containing in order the 'key' object and the other objects which made up the match (a list containing row/column match). If flat: Matches is a list of tiles to remove. Skips computing additional matches and new bonus tiles.
 			if(!matches.length) {
 				var drawRating = function() {
+					//AG: Can change the words here
 					if(matchesMadeThisMove > 4) {
 						drawBigOverlay('Delicious!', Width/2, Height/2, 100, ["#F8DB63", "#CF8A09"]);
 					} else if(matchesMadeThisMove > 3) {
@@ -675,7 +678,7 @@ startNewGame = function() {
 			});
 			
 			var lastY = gamefield[x].lastIndexOf(null)+1; //Tiles added to replace tiles matched.
-			scoreDelta += Math.floor(lastY * 27 * (matchesMadeThisMove/2+1));
+			scoreDelta += Math.floor(lastY * iMoves * (matchesMadeThisMove/2+1));
 			
 			_.range(0, lastY).map(function(y) {
 				var tile = getNewTile(x, y, undefined, _.random(numTileTypes)); //Specify false, random number to allow matches to be made by sheer chance, I think.
@@ -946,6 +949,7 @@ startNewGame = function() {
 		createjs.Ticker.setPaused(true);
 		gameStatus.set('finished');
 		window.setTimeout(function(){
+			//AG: When the game is over, say happy birthday
 			drawBigOverlay("Happy Birthday Sara!", Width/2, Height/2, 75, ["#F8DB63", "#CF8A09"]);
 			drawBigOverlay("Your score is " + score.value() + " points!", Width/2 + 75, Height/2 + 75, 50, ["#F8DB63", "#CF8A09"]);
 		}, 1000);
@@ -1068,6 +1072,8 @@ startNewGame = function() {
 	}
 	createjs.Ticker.addListener(stage);
 	
+	//AG: this PNG is important. It contains the sprite with allllll the candy. This one contains faces, but there is
+	// a file called ...-ORIGINAL without.
 	var spriteSheetB = new createjs.Bitmap("images/CC_Grid_Sprite_Sheet_v2.png");
 	
 	var tileSourceRects = { //sourceRect is not cloned when we clone the bitmap. We must define sourceRects instead of bitmaps.
